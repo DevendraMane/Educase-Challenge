@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 
 import { Input } from "../component/Input";
 import { Button } from "../component/Button";
+import { useNavigate } from "react-router";
 
 export const Register = () => {
   const [formData, setFormData] = useState({
@@ -11,6 +12,7 @@ export const Register = () => {
     password: "",
     companyName: "",
   });
+  const navigate = useNavigate();
 
   const [allRequiredFilled, setAllRequiredFilled] = useState(false);
 
@@ -32,74 +34,78 @@ export const Register = () => {
   };
 
   const handleCreateAccount = () => {
-    console.log("Creating account with data:", formData);
+    navigate("/account-settings");
   };
 
   return (
     <div className="wel-auth-container">
-      <div className="wel-msg">
-        <div className="msg">
-          <h2>Create your PopX account</h2>
-        </div>
-      </div>
-      <form>
-        <Input
-          label="Full Name"
-          name="fullName"
-          placeholder="Marry Doe"
-          required={true}
-          onChange={handleChange}
-        />
-        <Input
-          label="Phone number"
-          name="phoneNumber"
-          placeholder="Marry Doe"
-          required={true}
-          onChange={handleChange}
-        />
-        <Input
-          label="Email address"
-          name="email"
-          placeholder="Marry Doe"
-          required={true}
-          onChange={handleChange}
-        />
-        <Input
-          label="Password"
-          name="password"
-          placeholder="Marry Doe"
-          required={true}
-          type="password"
-          onChange={handleChange}
-        />
-        <Input
-          label="Company name"
-          name="companyName"
-          placeholder="Marry Doe"
-          required={false}
-          onChange={handleChange}
-        />
-        <div className="radio-group">
-          <p>
-            Are you an Agency?<span>*</span>
-          </p>
-          <div className="radio-buttons">
-            <label>
-              <input type="radio" name="agency" value="yes" required />
-              Yes
-            </label>
-            <label>
-              <input type="radio" name="agency" value="no" required />
-              No
-            </label>
+      <div>
+        <div className="wel-msg">
+          <div className="msg">
+            <h2>Create your PopX account</h2>
           </div>
         </div>
-      </form>
+        <form>
+          <Input
+            placeholder="Enter your name"
+            label="Full Name"
+            name="fullName"
+            required={true}
+            onChange={handleChange}
+          />
+          <Input
+            placeholder="Enter your phone number"
+            label="Phone number"
+            name="phoneNumber"
+            required={true}
+            onChange={handleChange}
+          />
+          <Input
+            placeholder="Enter your email address"
+            label="Email address"
+            name="email"
+            required={true}
+            onChange={handleChange}
+          />
+          <Input
+            placeholder="Enter your passwork"
+            label="Password"
+            name="password"
+            required={true}
+            type="password"
+            onChange={handleChange}
+          />
+          <Input
+            placeholder="Enter your company name"
+            label="Company name"
+            name="companyName"
+            required={false}
+            onChange={handleChange}
+          />
+          <div className="radio-group">
+            <p>
+              Are you an Agency?<span>*</span>
+            </p>
+            <div className="radio-buttons">
+              <label>
+                <input type="radio" name="agency" value="yes" required />
+                Yes
+              </label>
+              <label>
+                <input type="radio" name="agency" value="no" required />
+                No
+              </label>
+            </div>
+          </div>
+        </form>
+      </div>
       <div className="auth-btns">
         <Button
           text="Create Account"
           onClick={handleCreateAccount}
-          className="register-acc-btn"
+          className={`register-acc-btn ${
+            location.pathname === "/register" ? "m-top" : ""
+          }`}
           disabled={!allRequiredFilled}
         />
       </div>

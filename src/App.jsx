@@ -5,8 +5,8 @@ import { Register } from "./pages/Register"; // You'll create this file
 import { Login } from "./pages/Login"; // You'll create this file
 import { Welcome } from "./pages/Welcome";
 import AppLayout from "./component/layout/AppLayout";
+import AccountSettings from "./pages/AccountSettings";
 
-// The main App component with routing
 export const App = () => {
   const router = createBrowserRouter([
     {
@@ -24,6 +24,10 @@ export const App = () => {
         {
           path: "/login",
           element: <Login />,
+        },
+        {
+          path: "/account-settings",
+          element: <AccountSettings />,
         },
       ],
     },
